@@ -57,23 +57,40 @@ window.addEventListener('load', function() {
 	}
 	
 	var zagon = function(event) {
-		vrednosti = [];
-		var barve = document.querySelectorAll("#barve > button");
-		for (i = 0; i < barve.length; i++) {
-			var barva = barve[i];
-			vrednosti.push(barva.innerHTML);
+		
+		if(gumb_odstrani == false)
+		{
+			if(stevec == 0)
+			{
+				alert("Vstavi eno barvo.");
+				return;
+			}
+			
+			vrednosti = [];
+			var barve = document.querySelectorAll("#barve > button");
+			for (i = 0; i < barve.length; i++) {
+				var barva = barve[i];
+				vrednosti.push(barva.innerHTML);
+			}
+			
+			minCas = 1000;
+			maxCas = 1000;
+			spremeniBarvo(0);
+			
+			var start = document.querySelector("#start");
+			start.innerHTML = "Ustavi stroboskop";
+			start.addEventListener('click', stop);
+			gumb_odstrani = true;
 		}
-		
-		minCas = 1000;
-		maxCas = 1000;
-		spremeniBarvo(0);
-		
-		var start = document.querySelector("#start");
-		start.innerHTML = "Ustavi stroboskop";
-		start.removeEventListener('click', zagon);
-		start.addEventListener('click', stop);
+		else
+		{
+			var start = document.querySelector("#start");
+			start.innerHTML = "Zaženi stroboskop";
+			stop();
+			start.removeEventListener('click', stop);
+			gumb_odstrani = false;
+		}
 	}
-	
 	document.querySelector("#start").addEventListener('click', zagon);
 	
 });
