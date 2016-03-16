@@ -60,6 +60,20 @@ window.addEventListener('load', function() {
 		
 		if(gumb_odstrani == false)
 		{
+			minCas = document.getElementById("min").value;
+			if(isNaN(minCas) == true)
+			{
+				alert("V začetek intervala vstavi številko.");
+				return;
+			}
+			
+			maxCas = document.getElementById("max").value;
+			if(isNaN(maxCas) == true)
+			{
+				alert("V konec intervala vstavi številko.");
+				return;
+			}
+			
 			if(stevec == 0)
 			{
 				alert("Vstavi eno barvo.");
@@ -73,8 +87,6 @@ window.addEventListener('load', function() {
 				vrednosti.push(barva.innerHTML);
 			}
 			
-			minCas = 1000;
-			maxCas = 1000;
 			spremeniBarvo(0);
 			
 			var start = document.querySelector("#start");
