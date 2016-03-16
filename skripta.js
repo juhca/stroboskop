@@ -1,5 +1,7 @@
 window.addEventListener('load', function() {
 	//stran nalozena
+	var stevec = 0;
+	var gumb_odstrani = false;
 	
 	//Dodaj novo barvo
 	var dodajBarvo = function(event) {
@@ -7,14 +9,32 @@ window.addEventListener('load', function() {
         var picker = new jscolor(input);
         picker.fromRGB(Math.floor(Math.random()*255), Math.floor(Math.random()*255), Math.floor(Math.random()*255))
         document.getElementById("barve").appendChild(input);
+        stevec++;
 	}
 	
 	document.querySelector("#novaBarva") 
 		.addEventListener('click', dodajBarvo);
 		
-	//Odstrani barve
+		//Odstrani barve
+	var odstraniBarvo = function(event)
+	{
+		if(stevec > 0)
+		{
+			var oce = document.getElementById("barve");
+			while(oce.firstChild)
+			{
+				oce.removeChild(oce.firstChild);
+			}
+			stevec = 0;	
+		}
+		else
+		{
+			alert("Manjkajoča barva. Za odstranitev barve, moraš prvo dodati eno. Kdo bi si mislil?");
+		}
+	}
+	document.querySelector("#odstraniBarve").addEventListener('click', odstraniBarvo);
 	
-	//Stroboskop
+		//Stroboskop
 	var vrednosti = [];
 	var minCas = 0;
 	var maxCas = 0;
